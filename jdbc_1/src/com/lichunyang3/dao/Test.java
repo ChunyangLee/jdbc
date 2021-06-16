@@ -18,7 +18,7 @@ public class Test {
     public void test1(){
         Connection con = null;
         try {
-            con = JDBCUtils.getConnectionByC3p0();
+            con = JDBCUtils.getConnectionByDBCP();
         } catch (Exception e) {
             e.printStackTrace();
         }

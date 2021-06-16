@@ -1,7 +1,9 @@
 package com.lichunyang.util;
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import org.apache.commons.dbcp.BasicDataSourceFactory;
 
+import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -14,6 +16,25 @@ import java.util.Properties;
 public class JDBCUtils {
 
     private static ComboPooledDataSource cpds;
+    private  static Properties pros;
+    private static DataSource source;
+
+    static {
+        try {
+            InputStream is = ClassLoader.getSystemClassLoader().getResourceAsStream("dbcp.properties");
+            pros = new Properties();
+            pros.load(is);
+            source = BasicDataSourceFactory.createDataSource(pros);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static Connection getConnectionByDBCP() throws Exception{
+        return source.getConnection();
+    }
+
 
     public static Connection getConnectionByC3p0() throws Exception{
         //为null才进行锁，否则每个线程就来都得在外面等着
