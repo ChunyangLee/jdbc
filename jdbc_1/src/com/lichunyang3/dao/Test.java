@@ -5,6 +5,7 @@ import com.lichunyang.util.JDBCUtils;
 
 import java.sql.Connection;
 import java.sql.Date;
+import java.util.List;
 
 /**
  * @author ChunyangLi
@@ -15,9 +16,17 @@ public class Test {
 
     @org.junit.Test
     public void test1(){
-        Connection con = JDBCUtils.getConnection();
-        dao.insert(con,new Customer(1,"于小飞","xiaofei@qq.com",new Date(23425453543L)));
+        Connection con = null;
+        try {
+            con = JDBCUtils.getConnectionByC3p0();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+//        dao.insert(con,new Customer(1,"于小飞","xiaofei@qq.com",new Date(23425453543L)));
+        List<Customer> list = dao.getAll(con);
+        list.forEach(System.out::println);
         JDBCUtils.closeConnection(con);
     }
+
 
 }

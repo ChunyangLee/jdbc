@@ -1,5 +1,7 @@
 package com.lichunyang.util;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
@@ -10,6 +12,21 @@ import java.util.Properties;
  * @create 2021-06-14-15:10
  */
 public class JDBCUtils {
+
+    private static ComboPooledDataSource cpds;
+
+    public static Connection getConnectionByC3p0() throws Exception{
+        //为null才进行锁，否则每个线程就来都得在外面等着
+        if(cpds==null){
+            synchronized (JDBCUtils.class){
+                if(cpds==null){
+                    cpds = new ComboPooledDataSource("myC3p0");
+                }
+            }
+        }
+        return cpds.getConnection();
+    }
+
     /**
      * 获得连接
      * @return
