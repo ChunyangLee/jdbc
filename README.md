@@ -71,3 +71,7 @@ Process finished with exit code 130 (interrupted by signal 2: SIGINT)
       <property name="driverClass">com.mysql.cj.jdbc.Driver</property>
       <property name="jdbcUrl">jdbc:mysql://localhost:3306/test?useUnicode=true&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai&amp;rewriteBatchedStatements=true</property>
 ```
+
+## DRUID
+`文档`[druid-1.1.10](https://www.javadoc.io/doc/com.alibaba/druid/1.1.10/com/alibaba/druid/pool/DruidDataSource.html)
+`基本配置`[配置](https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_DruidDataSource%E5%8F%82%E8%80%83%E9%85%8D%E7%BD%AE)
