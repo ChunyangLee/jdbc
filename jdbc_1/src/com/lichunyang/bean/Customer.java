@@ -56,6 +56,10 @@ public class Customer {
         this.birth = birth;
     }
 
+    public Customer(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Customer{" +
