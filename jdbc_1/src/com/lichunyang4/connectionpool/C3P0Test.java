@@ -4,10 +4,11 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 import org.junit.Test;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 /**
  * @author ChunyangLi
- * @create 2021-06-15-21:49
+ * created on 2021-06-15-21:49
  */
 public class C3P0Test {
 
@@ -22,6 +23,12 @@ public class C3P0Test {
 
         Connection con = cpds.getConnection();
         System.out.println(con);
+    }
+    @Test
+    public void test2() throws SQLException {
+        ComboPooledDataSource cpds = new ComboPooledDataSource("myC3p0");
+        Connection connection = cpds.getConnection();
+        System.out.println(connection);
     }
 
 }
